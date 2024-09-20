@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_product');
             $table->decimal('price_product', 5, 2);
             $table->tinyInteger('quantity');
+            $table->timestamps();
         });
     }
 

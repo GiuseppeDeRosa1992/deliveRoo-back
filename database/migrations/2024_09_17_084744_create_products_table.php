@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('name', 70);
             $table->text('description');
             $table->string('image', 255);
-            $table->enum('type', ["Food, Soft Drinks, Drinks, Dessert"]);
+            $table->enum('type', ['Food', 'Soft Drinks', 'Drinks', 'Dessert']);
             $table->decimal('price', 5, 2);
             $table->boolean('visible');
+            $table->timestamps();
         });
     }
 

@@ -14,46 +14,46 @@
 
 # INFO
 
-Questo git-template fornisce lo scaffold di una web application realizzata con Laravel 10, Blade, Breeze, SCSS, Bootstrap e Vite. 
+Questo git-template fornisce lo scaffold di una web application realizzata con Laravel 10, Blade, Breeze, SCSS, Bootstrap e Vite.
 
-- [Documentazione Laravel 10.x](https://laravel.com/docs/10.x).
-- [Documentazione Laravel Breeze](https://laravel.com/docs/10.x/starter-kits).
+-   [Documentazione Laravel 10.x](https://laravel.com/docs/10.x).
+-   [Documentazione Laravel Breeze](https://laravel.com/docs/10.x/starter-kits).
 
 # SETUP INIZIALE
 
-- Creare un repository a partire da questo template, cliccando in alto a destra sul pulsantone verde `Use this template` e poi su `Create a new repository`
-- Clonare il repository appena creato sul proprio PC
-- Da phpMyAdmin creare un database, importarvi i dati e segnarvi il nome dato al DB
-- Creare un file `.env`. Si può procedere copiandolo da `.env.example`
-- Per creare la APP_KEY nel `.env`, lanciare il comando dedicato, ma prima installare le dipendenze composer
-	```bash
-    composer install
-	php artisan key:generate
-	```
- - Installare anche le dipendenze NPM
-	```bash
-	npm i
-	```
-- Ri-controllare che tutti i dati nel `.env` siano corretti (attenzione al database!)
-- Lanciare migrazioni e seeder
-	```bash
-	php artisan migrate:fresh --seed
-	```
-- Lanciare il progetto tramite il server built-in di PHP
-	```bash
-	php artisan serve
-	```
-- Lanciare vite
-	```bash
-	npm run dev
-	```
-- Puntare il browser all'indirizzo mostrato in terminale per controllare che tutto funzioni.
-- Navigate all'indirizzo per fare [login](http://localhost:8000/admin). Potete registrare un nuovo utente o usare:
-	```bash
-	user: luca@lambia.it
-	pass: 1backdoor2big
-	```
-- Una volta loggati dovreste poter raggiungere [la dashboard](http://localhost:8000/admin)
+-   Creare un repository a partire da questo template, cliccando in alto a destra sul pulsantone verde `Use this template` e poi su `Create a new repository`
+-   Clonare il repository appena creato sul proprio PC
+-   Da phpMyAdmin creare un database, importarvi i dati e segnarvi il nome dato al DB
+-   Creare un file `.env`. Si può procedere copiandolo da `.env.example`
+-   Per creare la APP_KEY nel `.env`, lanciare il comando dedicato, ma prima installare le dipendenze composer
+    ```bash
+      composer install
+    php artisan key:generate
+    ```
+-   Installare anche le dipendenze NPM
+    ```bash
+    npm i
+    ```
+-   Ri-controllare che tutti i dati nel `.env` siano corretti (attenzione al database!)
+-   Lanciare migrazioni e seeder
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+-   Lanciare il progetto tramite il server built-in di PHP
+    ```bash
+    php artisan serve
+    ```
+-   Lanciare vite
+    ```bash
+    npm run dev
+    ```
+-   Puntare il browser all'indirizzo mostrato in terminale per controllare che tutto funzioni.
+-   Navigate all'indirizzo per fare [login](http://localhost:8000/admin). Potete registrare un nuovo utente o usare:
+    ```bash
+    user: luca@lambia.it
+    pass: 1backdoor2big
+    ```
+-   Una volta loggati dovreste poter raggiungere [la dashboard](http://localhost:8000/admin)
 
 # RISORSE: MODEL, CONTROLLER, MIGRATION, SEEDER
 
@@ -79,6 +79,7 @@ Qui trovate la lista dei parametri accettati da [`make:model`](https://artisan.p
 A questo punto potete andare a definire il comportamento di migration e seeder nei relativi file.
 
 Infine lanciate entrambi usando il comando:
+
 ```bash
 php artisan migrate:fresh --seed
 ```
@@ -86,6 +87,7 @@ php artisan migrate:fresh --seed
 # CRUD
 
 Una volta creato un Resource Controller richiamatelo dalla rotte, come abbiamo sempre fatto.
+
 ```php
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController; // <---- Importare il controller da usare!!
@@ -95,9 +97,10 @@ Route::resource('posts', PostController::class);
 
 Testato che tutto funzioni possiamo valutare di spostarlo sotto autenticazione.
 
-Spostare il Resource Controller appena creato da `App\Http\Controllers` a una nuova cartella `App\Http\Controllers\Admin` 
+Spostare il Resource Controller appena creato da `App\Http\Controllers` a una nuova cartella `App\Http\Controllers\Admin`
 
 Nel controller correggere il namespace ed importare il Controller generico
+
 ```php
 <?php
 namespace App\Http\Controllers\Admin; // era "App\Http\Controllers"
@@ -112,17 +115,120 @@ Ora possiamo spostare le rotte del Resource Controller all'interno del blocco pr
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-	
+
 	// Admin Post CRUD
 	Route::resource('posts', PostController::class);
 });
 ```
 
 A questo punto avrebbe senso anche spostare tutte le viste richiamate dal controller. Se prima si creava sotto "views" una cartella "nomeRisorsa" con tutte le viste:
+
 ```bash
 /resources/views/posts/*.blade.php
 ```
+
 Adesso invece quella cartella andrà creata sotto "views/admin"
+
 ```bash
 /resources/views/admin/posts/*.blade.php
 ```
+
+$product = new Product();
+$product->name = 'Kebab Classico';
+$product->ingredients = 'Carne di Manzo, Insalata, Pomodoro, Cipolla, Salsa';
+$product->price = 4.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/kebab_classico.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Kebab con Pollo';
+$product->ingredients = 'Carne di Pollo, Insalata, Pomodoro, Cipolla, Salsa';
+$product->price = 4.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/kebab_pollo.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Kebab con Verdure';
+$product->ingredients = 'Verdure Grigliate, Insalata, Pomodoro, Cipolla, Salsa';
+$product->price = 4.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/kebab_verdure.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Pizza Margherita';
+$product->ingredients = 'Pomodoro, Mozzarella, Basilico';
+$product->price = 5.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/margherita.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Pizza Diavola';
+$product->ingredients = 'Pomodoro, Mozzarella, Salame Piccante';
+$product->price = 6.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/fac70f9740fa965fd2656616aa5eee6aa195bf6e/diavola.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Pizza Quattro Formaggi';
+$product->ingredients = 'Mozzarella, Gorgonzola, Parmigiano, Fontina';
+$product->price = 7.00;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/pizza_quattro_formaggi.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Panino con Prosciutto';
+$product->ingredients = 'Prosciutto, Formaggio, Insalata';
+$product->price = 4.00;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/panino_prosciutto.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Panino Vegetariano';
+$product->ingredients = 'Verdure Grigliate, Formaggio, Salsa';
+$product->price = 4.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/panino_vegetariano.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Kebab Special';
+$product->ingredients = 'Carne di Manzo, Pollo, Insalata, Pomodoro, Cipolla, Salsa';
+$product->price = 5.50;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/kebab_special.jpg';
+$product->save();
+
+$product = new Product();
+$product->name = 'Falafel';
+$product->ingredients = 'Polpette di Ceci, Insalata, Pomodoro, Cipolla, Salsa';
+$product->price = 4.00;
+$product->visible = true;
+$product->restaurant_id = 13;
+$product->type = 'Food';
+$product->image = 'https://raw.githubusercontent.com/davidearbola/prod-img-deliveboo/5b79c2dcb49f675856d57dd6cd05eb6a9d1bce2f/falafel.jpg';
+$product->save();

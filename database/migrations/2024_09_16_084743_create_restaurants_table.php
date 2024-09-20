@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('p_iva', 11);
             $table->string('address', 255);
             $table->string('phone_number');
+            $table->timestamps();
         });
     }
 

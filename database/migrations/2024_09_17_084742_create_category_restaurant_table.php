@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
