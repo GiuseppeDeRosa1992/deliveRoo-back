@@ -27,4 +27,11 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class, 'order_product')->withPivot('quantity', 'name_product', 'price_product');
     }
+
+    public function calculateTotal()
+    {
+        return $this->products->sum(function ($product) {
+            return $product->pivot->price_product * $product->pivot->quantity;
+        });
+    }
 }
