@@ -28,33 +28,42 @@
 
 		<div class="container-fluid vh-100">
 			<div class="row h-100">
-				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-dark sidebar collapse">
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-light sidebar collapse">
 					<div class="position-sticky pt-3">
 						<ul class="nav flex-column">
 
 							<li class="nav-item">
-								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
+								<a
+									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
+									<i class="fa-solid fa-house fa-lg fa-fw"></i>
+									Dashboard
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
+								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.index' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
+									<i class="fa-solid fa-clipboard fa-lg fa-fw"></i> Order
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
+								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.show' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
+									<i class="fa-solid fa-utensils fa-lg fa-fw"></i> Menus
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link text-white bg-secondary" href="{{ route('logout') }}"
+								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.show' ? 'my_salmon' : '' }}"
+									href="{{ route('admin.dashboard') }}">
+									<i class="fa-solid fa-chart-line fa-lg fa-fw"></i> Analysis
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link my_textdark rounded-pill" href="{{ route('logout') }}"
 									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 									<i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i> {{ __('Logout') }}
 								</a>
@@ -68,7 +77,7 @@
 					</div>
 				</nav>
 
-				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+				<main class="col-md-9 ms-sm-auto col-lg-10 ">
 					@yield('content')
 				</main>
 			</div>
@@ -78,3 +87,22 @@
 </body>
 
 </html>
+
+<style scoped>
+	.my_salmon {
+		background-color: #facdad;
+	}
+
+	.my_orange {
+		background-color: #FF9900;
+	}
+
+	a:hover {
+		color: #FF9900;
+		!important
+	}
+
+	.my_textdark {
+		color: black
+	}
+</style>
