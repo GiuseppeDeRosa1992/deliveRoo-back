@@ -58,7 +58,7 @@
 									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' || Route::currentRouteName() == 'admin.products.edit' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.products.index') }}">
 									<i
-										class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() || (Route::currentRouteName() == 'admin.products.edit') == 'admin.products.create' ? 'my_orange' : '' }}"></i>
+										class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.edit' || Route::currentRouteName() == 'admin.products.create' ? 'my_orange' : '' }}"></i>
 									Menus
 								</a>
 							</li>
