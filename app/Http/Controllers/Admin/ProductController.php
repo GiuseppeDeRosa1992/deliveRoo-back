@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -14,7 +18,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return  view('admin.products.index');
+        $user = Auth::user();
+        $restaurant = $user->restaurant;
+
+        $products = Product::where('restaurant_id', $restaurant->id)->get();
+
+        return  view('admin.products.index', $products);
     }
 
     /**
@@ -22,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -30,7 +39,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $restaurant = $user->restaurant;
+        $data = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:255',
+            'price' => 'required|numeric|gt:0|lt:10000|decimal:2',
+            'visible' => 'boolean',
+            'type' => 'string|required|in:Food,Soft Drinks,Drinks,Dessert',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+        $data['restaurant_id'] = $restaurant->id;
+        $data['image'] = Storage::put('uploads', $data['image']);
+
+        $newProduct = new Product();
+        $newProduct->fill($data);
+        $newProduct->save();
+        return redirect()->route('admin.products.index');
     }
 
     /**

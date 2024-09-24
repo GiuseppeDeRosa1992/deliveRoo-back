@@ -5,13 +5,13 @@
 		<div class="row justify-content-center">
 			{{-- *****************RESTAURANT*********** --}}
 
-			<div class="col-12">
+			<div class="col-12 text-center">
 				{{ $restaurant->name }}
 			</div>
 
 			{{-- ***************ORDERS*********** --}}
 
-			<div class="col-6">
+			<div class="col-6 text-center">
 				<div>
 					@foreach ($orders as $order)
 						{{ $order->name_client }}
@@ -21,7 +21,7 @@
 
 			{{-- **************PRODUCTS*********** --}}
 
-			<div class="col-6">
+			<div class="col-6 text-center">
 				<div>
 					@foreach ($products as $product)
 						{{ $product->name }}
@@ -31,7 +31,7 @@
 
 			{{-- ***************ANALYTICS*********** --}}
 
-			<div class="col-12">
+			<div class="col-12 text-center">
 
 			</div>
 
