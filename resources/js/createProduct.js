@@ -11,14 +11,14 @@ document.getElementById("name").addEventListener("input", function () {
 });
 
 // VALIDAZIONE INGREDIENTS
-document.getElementById("ingredients").addEventListener("input", function () {
-    const ingredients = document.getElementById("ingredients").value;
+document.getElementById("description").addEventListener("input", function () {
+    const description = document.getElementById("description").value;
 
-    if (ingredients === "") {
-        document.querySelector("#error_ingredients>strong").innerHTML =
+    if (description === "") {
+        document.querySelector("#error_description>strong").innerHTML =
             "Il campo ingredienti non può essere vuoto";
     } else {
-        document.querySelector("#error_ingredients>strong").innerHTML = "";
+        document.querySelector("#error_description>strong").innerHTML = "";
     }
 });
 
