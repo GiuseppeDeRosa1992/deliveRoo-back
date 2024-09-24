@@ -1,0 +1,27 @@
+div.card-body>div>img {
+    top: -5rem;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+span {
+    font-size: 0.8rem;
+}
+
+img {
+    height: 10rem;
+}
+
+h4 {
+    margin-top: 7rem !important;
+}
+
+@media all and (min-width:992px) and (max-width:1200px) {
+    img {
+        height: 8rem;
+    }
+
+    h4 {
+        margin-top: 5rem !important;
+    }
+}
