@@ -18,6 +18,9 @@
 								<p class="card-text m-0 py-1">{{ $product->description }}</p>
 								<p class="card-text m-0 py-1">€{{ $product->price }}</p>
 								<p class="card-text m-0 py-1">{{ $product->type }}</p>
+								<p class="card-text m-0 py-1">Disponibilita` <i
+										class="fa-regular {{ $product->visible ? 'fa-circle-check' : 'fa-circle-xmark' }}"></i></p>
+
 							</div>
 							<div class="row m-0">
 								<div class="col-6 p-1">
