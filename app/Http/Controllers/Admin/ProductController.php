@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', $product->id);
     }
 
     /**
@@ -79,7 +79,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $user = Auth::user();
+        $restaurant = $user->restaurant;
+        $data = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:255',
+            'price' => 'required|numeric|gt:0|lt:10000|decimal:2',
+            'visible' => 'boolean',
+            'type' => 'string|required|in:Food,Soft Drinks,Drinks,Dessert',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+        $data['restaurant_id'] = $restaurant->id;
+        $data['image'] = Storage::put('uploads', $data['image']);
+        if ($request->has('image')) {
+            Storage::delete($product->image);
+            $image = Storage::put('uploads', $data['image']);
+            $data['image'] = $image;
+        }
+
+        $product->update($data);
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -87,6 +106,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Storage::delete($product->image);
+        $product->delete();
+        return redirect()->route('admin.products.index');
     }
 }

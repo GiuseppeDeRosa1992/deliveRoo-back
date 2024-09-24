@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin.orders.index');
+        $user = Auth::user();
+        $restaurant = $user->restaurant;
+        $orders = Order::where('restaurant_id', $restaurant->id)->orderByDesc('created_at')->get();
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
