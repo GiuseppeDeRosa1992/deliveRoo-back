@@ -6,14 +6,25 @@
 
 @section('content')
 	<div class="container-fluid h-100 px-0 pt-3">
-		<h1 class="m-0 pt-2 pb-4 px-4">Menù List</h1>
+		<div class="row m-0 justify-content-between pt-2 pb-4 px-4">
+			<div class="col-2 p-0">
+				<h1 class="m-0">Menù List</h1>
+			</div>
+			<div class="col-2 align-self-center p-0">
+				<a href="{{ route('admin.products.create') }}" class="btn my_salmon">
+					<i class="fa-solid fa-plus"></i> Aggiungi Prodotto
+				</a>
+			</div>
+		</div>
+
 		<div class="row m-0">
 			@foreach ($products as $product)
 				<div class="col-12 col-sm-6 col-md-4 col-lg-3 px-4 py-5">
 					<div class="card text-center h-100">
 						<div class="card-body p-0 px-2 pb-2 d-flex justify-content-between flex-column">
 							<div class="position-relative">
-								<img src="{{ $product->image }}" class="rounded rounded-circle position-absolute mt-4" alt="{{ $product->image }}">
+								<img src="{{ $product->image }}" class="rounded rounded-circle position-absolute mt-4"
+									alt="{{ $product->image }}">
 								<h4 class="card-title mb-0 pb-1">{{ $product->name }}</h4>
 								<p class="card-text m-0 py-1">{{ $product->description }}</p>
 								<p class="card-text m-0 py-1">€{{ $product->price }}</p>
