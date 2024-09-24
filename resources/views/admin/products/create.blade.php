@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-	<div class="container-fluid h-100 pt-3">
+	<div class="container-fluid h-100 mt-3">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10 p-5 my_salmon rounded">
 				<div class="card">
