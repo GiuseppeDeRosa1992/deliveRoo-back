@@ -20,6 +20,10 @@
     overflow: scroll;
 }
 
+#columnRight::-webkit-scrollbar {
+    display: none; 
+  }
+
 #restaurant_card{
     height: calc(30% - 0.5rem);
     display: flex;
@@ -64,7 +68,7 @@
     color: red;
 }
 
-@media all and(min-width:992px) {
+@media all and (max-width:992px) {
     .my_container{
         display: block;
         overflow: scroll;
@@ -72,6 +76,15 @@
 
     .my_container::-webkit-scrollbar{
         display: none; 
-      }
+    }
+
+    #columnLeft{
+        width: 100%;
+    }
+
+    #columnRight{
+        width: 100%;
+        margin-top: 1rem;
+    }
 
 }
