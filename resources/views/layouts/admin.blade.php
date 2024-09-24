@@ -43,28 +43,31 @@
 							</li>
 
 							<li class="nav-item mt-2">
-								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.index' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.dashboard') }}">
+								<a
+									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.orders.index' ? 'my_salmon' : '' }}"
+									href="{{ route('admin.orders.index') }}">
 									<i
-										class="fa-solid fa-clipboard fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+										class="fa-solid fa-clipboard fa-lg fa-fw {{ Route::currentRouteName() == 'admin.orders.index' ? 'my_orange' : '' }}"></i>
 									Order
 								</a>
 							</li>
 
 							<li class="nav-item mt-2">
-								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.show' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.dashboard') }}">
+								<a
+									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.products.index' ? 'my_salmon' : '' }}"
+									href="{{ route('admin.products.index') }}">
 									<i
-										class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+										class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.products.index' ? 'my_orange' : '' }}"></i>
 									Menus
 								</a>
 							</li>
 
 							<li class="nav-item mt-2">
-								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.show' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.dashboard') }}">
+								<a
+									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.analytics.index' ? 'my_salmon' : '' }}"
+									href="{{ route('admin.analytics.index') }}">
 									<i
-										class="fa-solid fa-chart-line fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+										class="fa-solid fa-chart-line fa-lg fa-fw {{ Route::currentRouteName() == 'admin.analytics.index' ? 'my_orange' : '' }}"></i>
 									Analysis
 								</a>
 							</li>

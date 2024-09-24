@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.orders.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -54,7 +54,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -62,6 +62,6 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 }

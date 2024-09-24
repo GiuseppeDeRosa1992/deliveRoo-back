@@ -12,7 +12,7 @@ class AnalyticController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.analytics.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class AnalyticController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->route('admin.analytics.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class AnalyticController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('admin.analytics.index');
     }
 
     /**
@@ -36,7 +36,7 @@ class AnalyticController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return redirect()->route('admin.analytics.index');
     }
 
     /**
@@ -44,7 +44,7 @@ class AnalyticController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return redirect()->route('admin.analytics.index');
     }
 
     /**
@@ -52,7 +52,7 @@ class AnalyticController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return redirect()->route('admin.analytics.index');
     }
 
     /**
@@ -60,6 +60,6 @@ class AnalyticController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return redirect()->route('admin.analytics.index');
     }
 }

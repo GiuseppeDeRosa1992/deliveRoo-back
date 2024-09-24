@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return  view('admin.products.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return redirect()->route('admin.products.index');
     }
 
     /**

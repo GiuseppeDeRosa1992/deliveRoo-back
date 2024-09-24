@@ -14,7 +14,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -22,7 +22,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -30,7 +30,7 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -38,7 +38,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -46,7 +46,7 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -62,6 +62,6 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        return redirect()->route('admin.dashboard');
     }
 }
