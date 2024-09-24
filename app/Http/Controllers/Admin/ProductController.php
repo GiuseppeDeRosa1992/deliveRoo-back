@@ -23,7 +23,7 @@ class ProductController extends Controller
 
         $products = Product::where('restaurant_id', $restaurant->id)->get();
 
-        return  view('admin.products.index', $products);
+        return  view('admin.products.index', compact('products'));
     }
 
     /**
