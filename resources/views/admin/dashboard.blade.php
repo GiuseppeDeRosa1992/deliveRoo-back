@@ -1,23 +1,40 @@
 @extends('layouts.admin')
 
 @section('content')
-	<div class="container-fluid bg-secondary h-100 pt-3">
+	<div class="container-fluid  h-100 pt-3">
 		<div class="row justify-content-center">
-			<div class="col-md-8">
-				<div class="card">
-					<div class="card-header">{{ __('Dashboard') }}</div>
+			{{-- *****************RESTAURANT*********** --}}
 
-					<div class="card-body">
-						@if (session('status'))
-							<div class="alert alert-success" role="alert">
-								{{ session('status') }}
-							</div>
-						@endif
+			<div class="col-12">
+				{{ $restaurant->name }}
+			</div>
 
-						{{ __('You are logged in!') }}
-					</div>
+			{{-- ***************ORDERS*********** --}}
+
+			<div class="col-6">
+				<div>
+					@foreach ($orders as $order)
+						{{ $order->name_client }}
+					@endforeach
 				</div>
 			</div>
+
+			{{-- **************PRODUCTS*********** --}}
+
+			<div class="col-6">
+				<div>
+					@foreach ($products as $product)
+						{{ $product->name }}
+					@endforeach
+				</div>
+			</div>
+
+			{{-- ***************ANALYTICS*********** --}}
+
+			<div class="col-12">
+
+			</div>
+
 		</div>
 	</div>
 @endsection

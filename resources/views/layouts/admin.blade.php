@@ -87,7 +87,7 @@
 					</div>
 				</nav>
 
-				<main class="col-md-9 ms-sm-auto col-lg-10 ">
+				<main class="col-md-9 ms-sm-auto col-lg-10 my_bg_grey ">
 					@yield('content')
 				</main>
 			</div>
@@ -114,5 +114,9 @@
 
 	.my_textdark {
 		color: black
+	}
+
+	.my_bg_grey {
+		background-color: #f2f3f7;
 	}
 </style>
