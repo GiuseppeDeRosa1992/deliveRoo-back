@@ -27,42 +27,49 @@
 	<div id="app">
 
 		<div class="container-fluid vh-100">
-			<div class="row h-100">
-				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-light sidebar collapse">
+			<div class="row h-100 ">
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-light sidebar collapse ">
 					<div class="position-sticky pt-3">
 						<ul class="nav flex-column">
 
-							<li class="nav-item">
+							<li class="nav-item mt-2">
 								<a
 									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-house fa-lg fa-fw"></i>
+									<i
+										class="fa-solid fa-house fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
 									Dashboard
 								</a>
 							</li>
 
-							<li class="nav-item">
+							<li class="nav-item mt-2">
 								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.index' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-clipboard fa-lg fa-fw"></i> Order
+									<i
+										class="fa-solid fa-clipboard fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+									Order
 								</a>
 							</li>
 
-							<li class="nav-item">
+							<li class="nav-item mt-2">
 								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.show' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-utensils fa-lg fa-fw"></i> Menus
+									<i
+										class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+									Menus
 								</a>
 							</li>
 
-							<li class="nav-item">
+							<li class="nav-item mt-2">
 								<a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.show' ? 'my_salmon' : '' }}"
 									href="{{ route('admin.dashboard') }}">
-									<i class="fa-solid fa-chart-line fa-lg fa-fw"></i> Analysis
+									<i
+										class="fa-solid fa-chart-line fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+									Analysis
 								</a>
 							</li>
 
-							<li class="nav-item">
+							<li class="nav-item mt-2">
 								<a class="nav-link my_textdark rounded-pill" href="{{ route('logout') }}"
 									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 									<i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i> {{ __('Logout') }}
@@ -94,12 +101,12 @@
 	}
 
 	.my_orange {
-		background-color: #FF9900;
+		color: #FF9900;
 	}
 
 	a:hover {
-		color: #FF9900;
-		!important
+		color: #FF9900 !important;
+
 	}
 
 	.my_textdark {
