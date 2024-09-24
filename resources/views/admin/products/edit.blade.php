@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container-fluid h-100 mt-3">
 		<div class="row justify-content-center">
-			<div class="col-md-8">
+			<div class="col-12 col-md-10 p-5 my_salmon rounded">
 				<div class="card">
 					<div class="card-header">MODIFICA IL PRODOTTO</div>
 
@@ -36,13 +36,13 @@
 							<!-- Step 2: Ingredients -->
 							<div class="form-step">
 								<div class="form-group mb-3">
-									<label for="ingredients">Ingredienti</label>
-									<textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients"
-									 rows="3">{{ old('ingredients', $product->ingredients) }}</textarea>
-									<p id="error_ingredients" class="bg-danger text-white rounded m-0 px-1">
+									<label for="description">Ingredienti e descrizione</label>
+									<textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
+									 rows="3">{{ old('description', $product->description) }}</textarea>
+									<p id="error_description" class="bg-danger text-white rounded m-0 px-1">
 										<strong></strong>
 									</p>
-									@error('ingredients')
+									@error('description')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
@@ -89,20 +89,20 @@
 								<label for="type">Tipologia del prodotto: </label>
 								<div class="btn-group btn-group-toggle " data-toggle="buttons">
 									<label class="btn btn-outline-danger {{ old('type', $product->type) == 'Food' ? 'active' : '' }}">
-										<input type="radio" name="type" value="Food" @error('type') is-invalid @enderror"
+										<input type="radio" name="type" value="Food" @error('type') is-invalid @enderror
 											{{ old('type', $product->type) == 'Food' ? 'checked' : '' }}> Food
 									</label>
 									<label class="btn btn-outline-warning {{ old('type', $product->type) == 'Bibite' ? 'active' : '' }}">
-										<input type="radio" name="type" value="Bibite" @error('type') is-invalid @enderror"
-											{{ old('type', $product->type) == 'Bibite' ? 'checked' : '' }}> Bibite
+										<input type="radio" name="type" value="Bibite" @error('type') is-invalid @enderror
+											{{ old('type', $product->type) == 'Bibite' ? 'checked' : '' }}> Soft Drinks
 									</label>
 									<label class="btn btn-outline-dark {{ old('type', $product->type) == 'Bevande Alcoliche' ? 'active' : '' }}">
-										<input type="radio" name="type" value="Bevande Alcoliche" @error('type') is-invalid @enderror"
+										<input type="radio" name="type" value="Bevande Alcoliche" @error('type') is-invalid @enderror
 											{{ old('type', $product->type) == 'Bevande Alcoliche' ? 'checked' : '' }}>
-										Bevande Alcoliche
+										Drinks
 									</label>
 									<label class="btn btn-outline-success {{ old('type', $product->type) == 'Dessert' ? 'active' : '' }}">
-										<input type="radio" name="type" value="Dessert" @error('type') is-invalid @enderror"
+										<input type="radio" name="type" value="Dessert" @error('type') is-invalid @enderror
 											{{ old('type', $product->type) == 'Dessert' ? 'checked' : '' }}> Dessert
 									</label>
 								</div>
@@ -119,12 +119,12 @@
 							<!-- Step 6: Image Upload -->
 							<div class="form-step">
 								<div class="form-group mb-3">
-									<label for="image_path">Immagine del prodotto</label>
-									<input type="file" class="form-control-file @error('image_path') is-invalid @enderror" id="image_path"
-										name="image_path" accept="image/*">
+									<label for="image">Immagine del prodotto</label>
+									<input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image"
+										name="image" accept="image/*" value="{{ $product->image }}">
 									<small class="form-text text-muted">Immagine attuale:
-										{{ basename($product->image_path) }}</small>
-									@error('image_path')
+										{{ basename($product->image) }}</small>
+									@error('image')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
@@ -148,14 +148,6 @@
 
 
 	<style scoped>
-		* {
-			font-family: "Alice", serif;
-		}
-
-		.form-step.active {
-			/* display: block; */
-		}
-
 		.form-control:focus {
 			border-color: green;
 			box-shadow: none;
@@ -164,6 +156,10 @@
 		input[type="checkbox"]:checked {
 			background-color: green;
 			border-color: green;
+		}
+
+		.my_salmon {
+			background-color: #facdad;
 		}
 	</style>
 @endsection
