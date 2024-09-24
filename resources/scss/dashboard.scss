@@ -88,3 +88,18 @@
     }
 
 }
+
+@media all and (max-height: 730px){
+    #restaurant_card{
+        height: calc(50% - 0.5rem);
+    }
+    #product_card{
+        height: calc(50% - 0.5rem);
+    }
+}
+
+@media all and (min-width: 1200px){
+    .img_restaurant{
+        height: 10rem;
+    }
+}
