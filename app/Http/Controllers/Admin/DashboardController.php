@@ -16,12 +16,7 @@ class DashboardController extends Controller
         $restaurant = $user->restaurant;
         $orders = Order::where('restaurant_id', $restaurant->id)->orderByDesc('created_at')->get();
         $products = Product::where('restaurant_id', $restaurant->id)->orderBy('name')->get();
-        $categories = $restaurant->categories();
 
-
-
-
-
-        return view('admin.dashboard', compact('user', 'restaurant', 'orders', 'products', 'categories'));
+        return view('admin.dashboard', compact('user', 'restaurant', 'orders', 'products'));
     }
 }

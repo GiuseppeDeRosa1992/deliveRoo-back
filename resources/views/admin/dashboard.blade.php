@@ -1,40 +1,43 @@
 @extends('layouts.admin')
 
 @section('content')
-	<div class="container-fluid  h-100 pt-3">
-		<div class="row justify-content-center">
-			{{-- *****************RESTAURANT*********** --}}
+    <div class="container-fluid  h-100 pt-3">
+        <div class="row justify-content-center">
+            {{-- *****************RESTAURANT*********** --}}
 
-			<div class="col-12 text-center">
-				{{ $restaurant->name }}
-			</div>
+            <div class="col-12 text-center">
+                {{ $restaurant->name }}
+                @foreach ($restaurant->categories as $category)
+                    {{ $category->name }}
+                @endforeach
+            </div>
 
-			{{-- ***************ORDERS*********** --}}
+            {{-- ***************ORDERS*********** --}}
 
-			<div class="col-6 text-center">
+            {{-- <div class="col-6 text-center">
 				<div>
 					@foreach ($orders as $order)
 						{{ $order->name_client }}
 					@endforeach
 				</div>
-			</div>
+			</div> --}}
 
-			{{-- **************PRODUCTS*********** --}}
+            {{-- **************PRODUCTS*********** --}}
 
-			<div class="col-6 text-center">
+            {{-- <div class="col-6 text-center">
 				<div>
 					@foreach ($products as $product)
 						{{ $product->name }}
 					@endforeach
 				</div>
-			</div>
+			</div> --}}
 
-			{{-- ***************ANALYTICS*********** --}}
+            {{-- ***************ANALYTICS*********** --}}
 
-			<div class="col-12 text-center">
+            <div class="col-12 text-center">
 
-			</div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 @endsection
