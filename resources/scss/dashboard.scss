@@ -1,0 +1,90 @@
+.my_container{
+    padding: 1rem;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+#columnLeft{
+    width: calc(50% - 0.5rem);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#columnRight{
+    width: calc(50% - 0.5rem);
+    height: 100%;
+    padding: 0.5rem;
+    overflow: scroll;
+}
+
+#columnRight::-webkit-scrollbar {
+    display: none; 
+  }
+
+#restaurant_card{
+    height: calc(30% - 0.5rem);
+    display: flex;
+    padding:0 1rem 0 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+#product_card{
+    height: calc(70% - 0.5rem);
+    padding: 0.5rem;
+    overflow: scroll;
+}
+
+#product_card::-webkit-scrollbar {
+    display: none; 
+  }
+
+.img_container{
+    width: calc(40% - 0.5rem);
+    text-align: center;
+}
+.detail_restaurant_container{
+    width: calc(60% - 0.5rem);
+}
+
+.img_category{
+    height: 1.5rem;
+}
+
+.img_restaurant{
+    height: 8rem;
+}
+
+.img_product{
+    height: 3rem;
+}
+
+.fa-circle-check{
+    color: green;
+}
+.fa-circle-xmark{
+    color: red;
+}
+
+@media all and (max-width:992px) {
+    .my_container{
+        display: block;
+        overflow: scroll;
+    }
+
+    .my_container::-webkit-scrollbar{
+        display: none; 
+    }
+
+    #columnLeft{
+        width: 100%;
+    }
+
+    #columnRight{
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+}
