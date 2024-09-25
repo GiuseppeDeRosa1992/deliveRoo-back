@@ -14,7 +14,7 @@ class Order extends Model
         'name_client',
         'email_client',
         'number_phone',
-        'address_cliente',
+        'address_client',
         'total'
     ];
 
