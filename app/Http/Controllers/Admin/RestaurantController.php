@@ -61,7 +61,7 @@ class RestaurantController extends Controller
         $user = Auth::user();
         $data = $request->validate([
             'name' =>  'required|string|min:3|max:255',
-            'image' =>  'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
+            'image' =>  'image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
             'p_iva' => 'required|string|size:11|regex:/^\d+$/',
             'address' => 'required|string|min:3|max:255',
             'phone_number' => 'required|size:10|regex:/^\d+$/',

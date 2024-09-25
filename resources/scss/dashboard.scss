@@ -30,7 +30,64 @@
     padding:0 1rem 0 1rem;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
+
+.my_edit_btn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.my_edit_btn:hover{
+    color: #FF9900;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.form-control:focus {
+    border-color: #FF9900 !important;
+    box-shadow: 0 0 0 0.25rem #FF9900 !important;
+}
+
+.form-check-input:checked {
+    background-color: #FF9900 !important;
+    border-color: #FF9900 !important;
+    box-shadow: none !important;
+}
+
+.my_submit {
+    text-decoration-line: none;
+    color: #222;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    background-color: white;
+    border: 2px solid #f1813a;
+}
+
+.my_submit:hover {
+    background-color: #f1813a;
+    transition: all 500ms;
+    color: white;
+}
+
+.my_submit_close {
+    text-decoration-line: none;
+    color: rgb(122, 122, 122);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid rgb(122, 122, 122);
+}
+
+.my_submit_close:hover {
+    background-color: rgb(122, 122, 122);
+    transition: all 500ms;
+    color: white;
+}
+
 #product_card{
     height: calc(70% - 0.5rem);
     padding: 0.5rem;
@@ -67,6 +124,8 @@
 .fa-circle-xmark{
     color: red;
 }
+
+
 
 @media all and (max-width:992px) {
     .my_container{
