@@ -148,7 +148,6 @@
             document.addEventListener('DOMContentLoaded', function() {
                 @if ($errors->any())
                     var myModal = new bootstrap.Modal(document.getElementById('modalId'));
-                    console.log(myModal);
                     myModal.show();
                 @endif
             });
@@ -156,8 +155,7 @@
 
         <script>
             const myModal = new bootstrap.Modal(
-                document.getElementById("modalId"),
-                options,
+                document.getElementById("modalId")
             );
         </script>
 
