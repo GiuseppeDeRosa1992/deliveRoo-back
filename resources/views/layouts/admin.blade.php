@@ -74,7 +74,7 @@
 							</li>
 
 							<li class="nav-item mt-2">
-								<a class="nav-link my_textdark rounded-pill" href="{{ route('logout') }}"
+								<a class="nav-link my_textdark rounded-pill" href="{{ route('login') }}"
 									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 									<i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i> {{ __('Logout') }}
 								</a>
@@ -112,6 +112,7 @@
 		color: #FF9900 !important;
 
 	}
+
 
 	.my_textdark {
 		color: black
