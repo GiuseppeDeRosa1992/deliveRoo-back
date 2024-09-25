@@ -135,7 +135,7 @@
 							</div>
 
 							<!-- Step 7: Review & Submit -->
-							<button type="submit" class="btn btn-success">SALVA</button>
+							<button type="submit" class="btn btn-success my_bt_orange">SALVA</button>
 						</form>
 					</div>
 				</div>
@@ -149,17 +149,29 @@
 
 	<style scoped>
 		.form-control:focus {
-			border-color: green;
-			box-shadow: none;
+			border-color: #facdad !important;
+			box-shadow: 0 0 0 0.25rem #facdad !important;
 		}
 
 		input[type="checkbox"]:checked {
-			background-color: green;
-			border-color: green;
+			background-color: #FF9900;
+			border-color: #facdad;
+		}
+
+		.form-check-input:focus {
+			border-color: #facdad;
+			outline: 0;
+			box-shadow: 0 0 0 0.25rem #facdad;
 		}
 
 		.my_salmon {
 			background-color: #facdad;
+		}
+
+		.my_bt_orange {
+			background-color: #FF9900 !important;
+			border: none !important;
+
 		}
 	</style>
 @endsection

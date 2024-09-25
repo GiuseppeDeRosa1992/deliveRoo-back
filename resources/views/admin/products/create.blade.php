@@ -126,7 +126,7 @@
 							</div>
 
 							<!-- Step 7: Submit -->
-							<button type="submit" class="btn btn-success">AGGIUNGI</button>
+							<button type="submit" class="btn btn-primary my_bt_orange">AGGIUNGI</button>
 						</form>
 					</div>
 				</div>
@@ -138,22 +138,30 @@
 	@vite(['resources/js/create_product.js'])
 
 	<style scoped>
-		.form-step.active {
-			/* display: block; */
-		}
-
 		.form-control:focus {
-			border-color: green;
-			box-shadow: none;
+			border-color: #facdad !important;
+			box-shadow: 0 0 0 0.25rem #facdad !important;
 		}
 
 		input[type="checkbox"]:checked {
-			background-color: green;
-			border-color: green;
+			background-color: #FF9900;
+			border-color: none;
 		}
 
 		.my_salmon {
 			background-color: #facdad;
+		}
+
+		.my_bt_orange {
+			background-color: #FF9900 !important;
+			border: none !important;
+
+		}
+
+		.form-check-input:focus {
+			border-color: #facdad;
+			outline: 0;
+			box-shadow: 0 0 0 0.25rem #facdad;
 		}
 	</style>
 @endsection
