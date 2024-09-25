@@ -88,6 +88,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="my-h position-relative">
+		<img src="{{ asset('img/semplicibo.jpg') }}" alt="" class="opacity-1 h-100 position-absolute">
+	</div>
 @endsection
 
 <style scoped>
@@ -113,5 +116,64 @@
 	.form-check-input:focus {
 		border-color: #facdad !important;
 		box-shadow: 0 0 0 0.25rem #facdad !important;
+	}
+
+	div.my-h {
+		margin-top: 9rem;
+		height: 10rem;
+
+		img {
+			animation: moveleft 4s linear infinite;
+		}
+	}
+
+	@keyframes moveleft {
+		0% {
+			left: 0%;
+		}
+
+		25% {
+			left: 22%;
+		}
+
+		50% {
+			left: 44%;
+		}
+
+		75% {
+			left: 66%;
+		}
+
+		100% {
+			left: 88%;
+		}
+	}
+
+	@media all and (max-width:1800px) {
+		div.my-h {
+			margin-top: 4rem;
+		}
+
+		@keyframes moveleft {
+			0% {
+				left: 0%;
+			}
+
+			25% {
+				left: 21.25%;
+			}
+
+			50% {
+				left: 42.5%;
+			}
+
+			75% {
+				left: 63.75%;
+			}
+
+			100% {
+				left: 85%;
+			}
+		}
 	}
 </style>
