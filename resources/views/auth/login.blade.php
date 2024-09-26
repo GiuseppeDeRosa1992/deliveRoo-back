@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container pt-3">
-		<div class="row justify-content-center">
+	<div class="container vh-100 pt-2 position-relative">
+		<div class="row justify-content-center m-0 logo">
+			{{-- **********LOGO******* --}}
+			<div class="col-5 py-lg-2 py-md-1">
+				<img class="img-fluid" src="{{ asset('img/Delive8.png') }}" alt="">
+			</div>
+			{{-- **********LOGO******* --}}
+		</div>
+		<div class="row justify-content-center mt-2">
 			<div class="col-md-8">
-				{{-- **********LOGO******* --}}
-				<div class="text-center mb-2" style="height: 12rem">
-					<img style="height:100%" src="{{ asset('img/MotoLogoFtg.png') }}" alt="">
-				</div>
-				{{-- **********LOGO******* --}}
-
 				<div class="card">
 					<div class="card-header">{{ __('Accedi') }}</div>
 
@@ -87,13 +88,18 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="my-h position-relative">
-		<img src="{{ asset('img/semplicibo.jpg') }}" alt="" class="opacity-1 h-100 position-absolute">
+
+		<img src="{{ asset('img/scooter-icon.png') }}" alt="" class="opacity-1  position-absolute ">
+
 	</div>
 @endsection
 
 <style scoped>
+	.logo img {
+		filter: drop-shadow(2px 4px 6px black);
+
+	}
+
 	.my_bg_grey {
 		background-color: #f2f3f7;
 	}
@@ -118,13 +124,11 @@
 		box-shadow: 0 0 0 0.25rem #facdad !important;
 	}
 
-	div.my-h {
-		margin-top: 9rem;
-		height: 10rem;
-
-		img {
-			animation: moveleft 4s linear infinite;
-		}
+	.opacity-1 {
+		height: 100px;
+		width: 100px;
+		animation: moveleft 6s linear infinite;
+		bottom: 0;
 	}
 
 	@keyframes moveleft {
@@ -132,48 +136,11 @@
 			left: 0%;
 		}
 
-		25% {
-			left: 22%;
-		}
-
-		50% {
-			left: 44%;
-		}
-
-		75% {
-			left: 66%;
-		}
-
 		100% {
-			left: 88%;
+			left: calc(100% - 100px);
 		}
 	}
 
-	@media all and (max-width:1800px) {
-		div.my-h {
-			margin-top: 4rem;
-		}
-
-		@keyframes moveleft {
-			0% {
-				left: 0%;
-			}
-
-			25% {
-				left: 21.25%;
-			}
-
-			50% {
-				left: 42.5%;
-			}
-
-			75% {
-				left: 63.75%;
-			}
-
-			100% {
-				left: 85%;
-			}
-		}
-	}
+	/* @media all and (max-width:1800px) {
+		
 </style>
