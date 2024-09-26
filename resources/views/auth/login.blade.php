@@ -127,7 +127,7 @@
 	}
 
 	.opacity-1 {
-		height: 100px;
+		height: 90px;
 		width: 100px;
 		animation: moveleft 6s linear infinite;
 		bottom: 0;
