@@ -1,11 +1,11 @@
-.my_container{
+.my_container {
     padding: 1rem;
     height: 100vh;
     display: flex;
     justify-content: space-between;
 }
 
-#columnLeft{
+#columnLeft {
     width: calc(50% - 0.5rem);
     height: 100%;
     display: flex;
@@ -13,7 +13,7 @@
     justify-content: space-between;
 }
 
-#columnRight{
+#columnRight {
     width: calc(50% - 0.5rem);
     height: 100%;
     padding: 0.5rem;
@@ -21,19 +21,19 @@
 }
 
 #columnRight::-webkit-scrollbar {
-    display: none; 
-  }
+    display: none;
+}
 
-#restaurant_card{
+#restaurant_card {
     height: calc(30% - 0.5rem);
     display: flex;
-    padding:0 1rem 0 1rem;
+    padding: 0 1rem 0 1rem;
     justify-content: space-between;
     align-items: center;
     position: relative;
 }
 
-.my_edit_btn{
+.my_edit_btn {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -41,7 +41,7 @@
     font-size: 1.5rem;
 }
 
-.my_edit_btn:hover{
+.my_edit_btn:hover {
     color: #FF9900;
     transition: 300ms;
     cursor: pointer;
@@ -88,77 +88,87 @@
     color: white;
 }
 
-#product_card{
+#product_card {
     height: calc(70% - 0.5rem);
     padding: 0.5rem;
     overflow: scroll;
 }
 
 #product_card::-webkit-scrollbar {
-    display: none; 
-  }
+    display: none;
+}
 
-.img_container{
+.img_container {
     width: calc(40% - 0.5rem);
     text-align: center;
 }
-.detail_restaurant_container{
+
+.detail_restaurant_container {
     width: calc(60% - 0.5rem);
 }
 
-.img_category{
+.img_category {
     height: 1.5rem;
 }
 
-.img_restaurant{
+.img_restaurant {
     height: 8rem;
 }
 
-.img_product{
+.img_product {
     height: 3rem;
 }
 
-.fa-circle-check{
+.fa-circle-check {
     color: green;
 }
-.fa-circle-xmark{
+
+.fa-circle-xmark {
     color: red;
 }
 
 
 
 @media all and (max-width:992px) {
-    .my_container{
+    .my_container {
         display: block;
         overflow: scroll;
     }
 
-    .my_container::-webkit-scrollbar{
-        display: none; 
+    .my_container::-webkit-scrollbar {
+        display: none;
     }
 
-    #columnLeft{
+    #columnLeft {
         width: 100%;
     }
 
-    #columnRight{
+    #columnRight {
         width: 100%;
         margin-top: 1rem;
     }
 
 }
 
-@media all and (max-height: 730px){
-    #restaurant_card{
+@media all and (max-height: 730px) {
+    #restaurant_card {
         height: calc(50% - 0.5rem);
+        flex-direction: column;
+        text-align: center;
+
     }
-    #product_card{
+
+    .img_restaurant {
+        height: 8rem;
+    }
+
+    #product_card {
         height: calc(50% - 0.5rem);
     }
 }
 
-@media all and (min-width: 1200px){
-    .img_restaurant{
+@media all and (min-width: 1200px) {
+    .img_restaurant {
         height: 10rem;
     }
 }
