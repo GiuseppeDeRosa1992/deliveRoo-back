@@ -18,7 +18,7 @@
 								<div class="form-group mb-3">
 									<label for="name" class="my-2">Nome del prodotto</label>
 									<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-										value="{{ old('name') }}" required>
+										value="{{ old('name') }}" required minlength="3" maxlength="255">
 									<p id="error_name" class="bg-danger text-white rounded m-0 px-1">
 										<strong></strong>
 									</p>
@@ -36,7 +36,7 @@
 								<div class="form-group mb-3">
 									<label for="description">Ingredienti e descrizione</label>
 									<textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-									 rows="3">{{ old('description') }}</textarea>
+									 rows="3" required minlength="3" maxlength="255">{{ old('description') }}</textarea>
 									<p id="error_description" class="bg-danger text-white rounded m-0 px-1">
 										<strong></strong>
 									</p>
@@ -54,7 +54,7 @@
 								<div class="form-group mb-3">
 									<label for="price">Prezzo</label>
 									<input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
-										value="{{ old('price') }}" step="0.01" required>
+										value="{{ old('price') }}" step="0.01" required pattern="^\d+(.\d{1,2})?$">
 									<p id="error_price" class="bg-danger text-white rounded m-0 px-1">
 										<strong></strong>
 									</p>
