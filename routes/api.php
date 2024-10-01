@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\RestaurantApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/categories', [CategoryApiController::class, 'getCategoryAll']);
+Route::get('/restaurants', [RestaurantApiController::class, 'getRestaurantsAll']);
+Route::post('/restaurants-by-category', [RestaurantApiController::class, 'getRestaurantsByCategory']);
