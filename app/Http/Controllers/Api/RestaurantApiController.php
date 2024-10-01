@@ -18,25 +18,29 @@ class RestaurantApiController extends Controller
 
     public function getRestaurantsByCategory(Request $request)
     {
+        // Valida le categorie
         if ($request->categories) {
-            // Controlla che i dati siano validi
             $request->validate([
                 'categories.*' => 'integer|exists:categories,id'
             ]);
 
-            // Se ho una singola categoria la trasformo in array così che il whereIn sia in grado di gestirlo
-            $categories = array($request->categories);
-            // Conto quante categorie sono state selezionate
+            // Assicurati che $categories sia un array
+            $categories = is_array($request->categories) ? $request->categories : [$request->categories];
             $categoryCount = count($categories);
 
-            // Trova ristoranti che hanno tutte le categorie specificate
+            // Trova ristoranti che hanno tutte le categorie selezionate
             $restaurants = Restaurant::whereHas('categories', function ($query) use ($categories) {
-                $query->where('categories.id', $categories);
+                $query->whereIn('categories.id', $categories);
             }, '=', $categoryCount)->with('categories')->get();
-        }
 
-        return response()->json([
-            'restaurants' => $restaurants,
-        ]);
+            return response()->json([
+                'restaurants' => $restaurants,
+            ]);
+        } else {
+            $restaurants = Restaurant::with('categories')->get();
+            return response()->json([
+                'restaurants' => $restaurants
+            ]);
+        }
     }
 }
