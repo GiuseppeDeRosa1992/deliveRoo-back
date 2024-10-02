@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/categories', [CategoryApiController::class, 'getCategoryAll']);
 Route::get('/restaurants', [RestaurantApiController::class, 'getRestaurantsAll']);
+Route::get('/restaurant/{restaurant:slug}', [RestaurantApiController::class, 'getSingleRestaurant']);
+
 Route::post('/restaurants-by-category', [RestaurantApiController::class, 'getRestaurantsByCategory']);

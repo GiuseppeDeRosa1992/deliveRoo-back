@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,23 @@ class RestaurantApiController extends Controller
             $restaurants = Restaurant::with('categories')->get();
             return response()->json([
                 'restaurants' => $restaurants
+            ]);
+        }
+    }
+
+    public function getSingleRestaurant($slug)
+    {
+        $restaurant = Restaurant::with('categories', 'products')->where('slug', $slug)->first();
+
+        if ($restaurant) {
+            return response()->json([
+                'success' => true,
+                'restaurant' => $restaurant,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'restaurant' => 'not-found',
             ]);
         }
     }
