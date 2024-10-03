@@ -41,6 +41,11 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $restaurant = $user->restaurant;
+        if ($request->has('visible')) {
+            $request['visible'] = true;
+        } else {
+            $request['visible'] = false;
+        };
         $data = $request->validate([
             'name' => 'required|string|min:3|max:255',
             'description' => 'required|string|min:3|max:255',
