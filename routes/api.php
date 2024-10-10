@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BraintreeController;
 use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\RestaurantApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,5 @@ Route::get('/braintree/token', [BraintreeController::class, 'token']);
 Route::post('/braintree/checkout', [BraintreeController::class, 'checkout']);
 
 Route::post('/restaurants-by-category', [RestaurantApiController::class, 'getRestaurantsByCategory']);
+
+Route::post('/order', [OrderApiController::class, 'store']);
