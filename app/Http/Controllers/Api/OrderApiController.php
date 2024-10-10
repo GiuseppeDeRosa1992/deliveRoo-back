@@ -3,15 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewContactRestaurant;
+use App\Mail\NewContactUser;
 use App\Models\Order;
 use App\Models\Order_Product;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderApiController extends Controller
 {
     public function store(Request $request)
     {
+
+
         $data = $request->validate([
             'restaurant_id' => 'required|integer',
             'name_client' => 'required|string',
@@ -48,6 +54,13 @@ class OrderApiController extends Controller
                 ]);
             }
         });
+        $restaurant = Restaurant::find($data['restaurant_id']);
+
+        $email_client = $data['email_client'];
+        Mail::to('info@info.com')->send(new NewContactUser($data, $restaurant));
+        Mail::to('info@info.com')->send(new NewContactRestaurant($data, $restaurant));
+
+
 
         return response()->json(['message' => 'Ordine inviato con successo!']);
     }
