@@ -28,9 +28,14 @@
 </head>
 
 <body>
-	<div id="app">
 
-		<div class="container-fluid vh-100">
+	<div id="app">
+		<div id="loader">
+			<div class="d-flex justify-content-center align-items-center vh-100">
+				<img src="{{ asset('img/logo-completo.png') }}" alt="" class="loader">
+			</div>
+		</div>
+		<div id="content" class="container-fluid vh-100" style="display: none">
 			<div class="row">
 				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-light sidebar">
 					<div class="position-sticky pt-3">
@@ -98,6 +103,15 @@
 		</div>
 
 	</div>
+
+	<script>
+		window.addEventListener('load', function() {
+			setTimeout(() => {
+				document.getElementById('content').style.display = 'block';
+				document.getElementById('loader').style.display = 'none';
+			}, 1500);
+		})
+	</script>
 </body>
 
 </html>
@@ -125,6 +139,35 @@
 		background-color: #f2f3f7;
 	}
 
+	/* ANIMAZIONE LOADER */
+	.loader {
+		animation: loader 1.8s ease infinite;
+		height: 6rem;
+	}
+
+	@keyframes loader {
+		30% {
+			transform: scale(1.2);
+		}
+
+		40%,
+		60% {
+			transform: rotate(-20deg) scale(1.2);
+		}
+
+		50% {
+			transform: rotate(20deg) scale(1.2);
+		}
+
+		70% {
+			transform: rotate(0deg) scale(1.2);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
 	@media all and (max-height: 730px) {
 		.nav-item span {
 			display: none;
@@ -144,6 +187,4 @@
 			padding-bottom: 0.5rem;
 		}
 	}
-
-	@media all and (max-height: 992px) {}
 </style>
