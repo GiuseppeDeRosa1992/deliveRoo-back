@@ -10,80 +10,137 @@ use Illuminate\Support\Facades\Auth;
 
 class AnalyticController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $user = Auth::user();
-        $restaurantId = $user->restaurant()->pluck('id');
+        $restaurantIds = $user->restaurant()->pluck('id');
+
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;
-        $firstOrderMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month')->whereIn('restaurant_id', $restaurantId)->orderBy('month', 'asc')->value('month');
 
+        // Trova il primo mese di ordine esistente
+        $firstOrderMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month')
+            ->whereIn('restaurant_id', $restaurantIds)
+            ->orderBy('month', 'asc')
+            ->value('month');
+
+        // Se non ci sono ordini, imposta la data di default
         if (!$firstOrderMonth) {
             $firstOrderMonth = $currentYear . '-' . '01';
-        };
+        }
 
+        // Genera una lista di mesi dal mese corrente fino al primo mese di ordine
         $months = [];
-
         $start = Carbon::parse($currentYear . '-' . $currentMonth)->startOfMonth();
-
         $end = Carbon::parse($firstOrderMonth)->startOfMonth();
 
+        // Crea l'intervallo di mesi in ordine decrescente
+        while ($start->gte($end)) {
+            $formattedMonth = $start->format('Y-m');
+            $months[$formattedMonth] = 0;
+            $start->subMonth();
+        }
 
+        // Ottieni i dati mensili filtrati
+        $ordersMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
+            ->whereIn('restaurant_id', $restaurantIds)
+            ->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfMonth(), Carbon::now()->endOfMonth()])
+            ->groupBy('month')
+            ->orderBy('month', 'desc')
+            ->get();
 
-        $ordersMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')->whereIn('restaurant_id', $restaurantId)->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfMonth(), Carbon::now()->endOfMonth()])->groupBy('month')->orderBy('month', 'desc')->get();
-
+        // Popola i dati con i conteggi degli ordini
         foreach ($ordersMonth as $order) {
-            $months[$order->month] = $order->count();
-        };
+            $months[$order->month] = $order->count;
+        }
 
-        $ordersTotalMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total_amount')->whereIn('restaurant_id', $restaurantId)->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfMonth(), Carbon::now()->endOfMonth()])->groupBy('month')->orderBy('month', 'desc')->get();
+        $labelsMonth = array_keys($months);
+        $dataMonth = array_values($months);
+
+        // Ottieni i dati annuali
+        $ordersYear = Order::selectRaw('YEAR(created_at) as year, COUNT(*) as count')
+            ->whereIn('restaurant_id', $restaurantIds)
+            ->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
+            ->get();
+
+        $dataYear = [];
+        $years = Order::selectRaw('YEAR(created_at) as year')
+            ->whereIn('restaurant_id', $restaurantIds)
+            ->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        foreach ($years as $year) {
+            $dataYear[$year] = 0;
+        }
+
+        foreach ($ordersYear as $order) {
+            $dataYear[$order->year] = $order->count;
+        }
+
+        $labelsYear = array_keys($dataYear);
+        $dataYear = array_values($dataYear);
+
+        // Guadagni mensili
+        $ordersTotalMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, SUM(total) as total_amount')
+            ->whereIn('restaurant_id', $restaurantIds)
+            ->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfMonth(), Carbon::now()->endOfMonth()])
+            ->groupBy('month')
+            ->orderBy('month', 'desc')
+            ->get();
 
         $monthsTotal = [];
+        $start = Carbon::parse($currentYear . '-' . $currentMonth)->startOfMonth();
+        $end = Carbon::parse($firstOrderMonth)->startOfMonth();
+
+        // Crea l'intervallo di mesi in ordine decrescente
+        while ($start->gte($end)) {
+            $formattedMonth = $start->format('Y-m');
+            $monthsTotal[$formattedMonth] = 0;
+            $start->subMonth();
+        }
+
         foreach ($ordersTotalMonth as $order) {
             $monthsTotal[$order->month] = $order->total_amount;
         }
 
-        $ordersYear = Order::selectRaw('YEAR(created_at) as year, COUNT(*) as count')->whereIn('restaurant_id', $restaurantId)->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])->groupBy('year')->orderBy('year', 'desc')->get();
-
-        $dataYear = [];
-
-        foreach ($ordersYear as $order) {
-            $dataYear[$order->year] = $order->count;
-        };
-
-        $years = Order::selectRaw('YEAR(created_at) as year')->whereIn('restaurant_id', $restaurantId)->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])->groupBy('year')->orderBy('year', 'desc')->get();
-
-        foreach ($years as $year) {
-            $dataYear[$order->year] = 0;
-        }
-
-        $ordersTotalYear = Order::selectRaw('YEAR(created_at) as year, SUM(total) as total_amount')->whereIn('restaurant_id', $restaurantId)->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])->groupBy('year')->orderBy('year', 'desc')->get();
-
-        $yearsTotal = [];
-        foreach ($ordersTotalYear as $order) {
-            $yearsTotal[$order->year] = $order->total_amount;
-        }
-
-        while ($start->gte($end)) {
-            $formattedMonth = $start->format('Y-m');
-            $months[$formattedMonth] = 0;
-            $monthsTotal[$formattedMonth] = 0;
-            $start->subMonth();
-        };
-
-        $labelsMonth = array_keys($months);
-        $dateMonth = array_keys($months);
-        $labelsYear = array_keys($dataYear);
-        $dateYear = array_keys($dataYear);
         $labelsTotalMonth = array_keys($monthsTotal);
-        $dateTotalMonth = array_keys($monthsTotal);
-        $labelsTotalYear = array_keys($yearsTotal);
-        $dateTotalYear = array_keys($yearsTotal);
+        $dataTotalMonth = array_values($monthsTotal);
 
-        return view('admin.analytics.index', compact('labelsMonth', 'dateMonth', 'labelsYear', 'dateYear', 'labelsTotalMonth', 'labelsTotalYear', 'dateTotalMonth', 'dateTotalYear'));
+        // Guadagni annuali
+        $ordersTotalYear = Order::selectRaw('YEAR(created_at) as year, SUM(total) as total_amount')
+            ->whereIn('restaurant_id', $restaurantIds)
+            ->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
+            ->get();
+
+        $dataTotalYear = [];
+        foreach ($years as $year) {
+            $dataTotalYear[$year] = 0;
+        }
+
+        foreach ($ordersTotalYear as $order) {
+            $dataTotalYear[$order->year] = $order->total_amount;
+        }
+
+        $labelsTotalYear = array_keys($dataTotalYear);
+        $dataTotalYear = array_values($dataTotalYear);
+
+        return view('admin.analytics.index', compact(
+            'labelsMonth',
+            'dataMonth',
+            'labelsYear',
+            'dataYear',
+            'labelsTotalMonth',
+            'dataTotalMonth',
+            'labelsTotalYear',
+            'dataTotalYear'
+        ));
     }
 
     /**
