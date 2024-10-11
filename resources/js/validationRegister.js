@@ -89,7 +89,7 @@ document.getElementById("user_name").addEventListener("input", function () {
 
     if (name.length < 3 || name.length > 255) {
         document.querySelector("#error_user_name>span").innerHTML =
-            "User name deve essere compreso tra 3 e 255 caratteri";
+            "Il Nome deve essere compreso tra 3 e 255 caratteri";
         userNameValidate = false;
         registerButton.setAttribute("disabled", "disabled");
     } else {
