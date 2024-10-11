@@ -16,8 +16,16 @@ class AnalyticController extends Controller
         $user = Auth::user();
         $restaurantIds = $user->restaurant()->pluck('id');
 
+
+
         $currentYear = Carbon::now()->year;
         $currentMonth = Carbon::now()->month;
+
+        //creo variabili con array vuoti
+        $months = [];
+        $monthsTotal = [];
+        $dataYear = [];
+        $dataTotalYear = [];
 
         // Trova il primo mese di ordine esistente
         $firstOrderMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month')
@@ -31,16 +39,8 @@ class AnalyticController extends Controller
         }
 
         // Genera una lista di mesi dal mese corrente fino al primo mese di ordine
-        $months = [];
         $start = Carbon::parse($currentYear . '-' . $currentMonth)->startOfMonth();
         $end = Carbon::parse($firstOrderMonth)->startOfMonth();
-
-        // Crea l'intervallo di mesi in ordine decrescente
-        while ($start->gte($end)) {
-            $formattedMonth = $start->format('Y-m');
-            $months[$formattedMonth] = 0;
-            $start->subMonth();
-        }
 
         // Ottieni i dati mensili filtrati
         $ordersMonth = Order::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as count')
@@ -66,7 +66,7 @@ class AnalyticController extends Controller
             ->orderBy('year', 'desc')
             ->get();
 
-        $dataYear = [];
+
         $years = Order::selectRaw('YEAR(created_at) as year')
             ->whereIn('restaurant_id', $restaurantIds)
             ->whereBetween('created_at', [Carbon::parse($firstOrderMonth)->startOfYear(), Carbon::now()->endOfYear()])
@@ -93,13 +93,10 @@ class AnalyticController extends Controller
             ->orderBy('month', 'desc')
             ->get();
 
-        $monthsTotal = [];
-        $start = Carbon::parse($currentYear . '-' . $currentMonth)->startOfMonth();
-        $end = Carbon::parse($firstOrderMonth)->startOfMonth();
-
         // Crea l'intervallo di mesi in ordine decrescente
         while ($start->gte($end)) {
             $formattedMonth = $start->format('Y-m');
+            $months[$formattedMonth] = 0;
             $monthsTotal[$formattedMonth] = 0;
             $start->subMonth();
         }
@@ -119,7 +116,7 @@ class AnalyticController extends Controller
             ->orderBy('year', 'desc')
             ->get();
 
-        $dataTotalYear = [];
+
         foreach ($years as $year) {
             $dataTotalYear[$year] = 0;
         }
