@@ -21,7 +21,7 @@
 </head>
 
 <body>
-	<h2>Conferma ordine effettuato pressso {{ $restaurant->name }}</h2>
+	<h2>Conferma ordine effettuato presso {{ $restaurant->name }}</h2>
 	<h3>Dettagli del ristorante</h3>
 	<p><b>Indirizzo:</b> {{ $restaurant->address }}</p>
 	<p><b>Telefono:</b> {{ $restaurant->phone_number }}</p>
