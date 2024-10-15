@@ -3,7 +3,7 @@
 ## Descrizione del progetto
 
 DeliveRoo è un'applicazione che semplifica la gestione delle consegne di cibo da ristoranti. Questo progetto è diviso in due parti principali: **Frontend** e **Backend**, che lavorano insieme per fornire un servizio completo e performante.
-[Qui trovi il link della repository Front-end] (https://github.com/GiuseppeDeRosa1992/deliveRoo-front)
+[Qui trovi il link della repository Front-end](https://github.com/GiuseppeDeRosa1992/deliveRoo-front)
 Ricorda che le due applicazioni lavorano insieme e quindi sarà necessario installare entrambe le repository.
 
 ## Tecnologie e librerie utilizzate Back-end
@@ -29,45 +29,49 @@ Prima di iniziare, assicurati di avere installato i seguenti strumenti:
 Segui questi passaggi per configurare l'ambiente di sviluppo localmente:
 
 1. Clona il repository:
-   \`\`\`bash
+```bash
    git clone https://github.com/GiuseppeDeRosa1992/deliveRoo-back
-   \`\`\`
+```
 
 2. Installa le dipendenze del backend:
-   \`\`\`bash
+```bash
    npm install
    composer install
-   \`\`\`
+```
 
 3. Genera la chiave per il progetto:
-   \`\`\`bash
+```bash
    php artisan key:generate
-   \`\`\`
+```
 
 4. Crea un nuovo file `.env` e copia dentro tutto ciò che sta in `.env.example`:
    
 5. Sostituisci la credenziali per il Database:
-   # ToDo: Configurare la connessione al DB
+```php
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
     DB_DATABASE= Il tuo Nome DB
     DB_USERNAME= Il tuo Username DB
     DB_PASSWORD= La tua Password DB
+```
 
 6. Sostituisci nel filesystem.php e nel .env il seguente comando da local a public:
-    ### Filesystems.php: 
+```php
+    // Filesystems.php: 
     'default' => env('FILESYSTEM_DISK', 'public'),
-    ### .env:
+    // .env:
     FILESYSTEM_DISK=public
+```
 
 7. Esegui questo comando per creare la cartella upload nella cartella public per la gestione delle immagini:
-    \`\`\`bash
+```bash
    php artisan storage:link
-   \`\`\`
+```
 
 8. Aggiorna il .env per mailtrap.io:
-    # MAILTRAP
+```php
+    // MAILTRAP
     MAIL_MAILER=smtp
     MAIL_HOST=sandbox.smtp.mailtrap.io
     MAIL_PORT=25
@@ -76,6 +80,7 @@ Segui questi passaggi per configurare l'ambiente di sviluppo localmente:
     MAIL_ENCRYPTION=null
     MAIL_FROM_ADDRESS="hello@example.com"
     MAIL_FROM_NAME="${APP_NAME}"
+```
 
 <!-- 9. Esegui questo comando per le dipendenze di Braintree:
     \`\`\`bash
@@ -83,11 +88,13 @@ Segui questi passaggi per configurare l'ambiente di sviluppo localmente:
    \`\`\` -->
 
 10. Aggiorna il .env per Braintree:
-    # Braintree
+```php
+    // Braintree
     BRAINTREE_ENV=sandbox
     BRAINTREE_MERCHANT_ID= Il tuo MERCHANT_ID di Braintree
     BRAINTREE_PUBLIC_KEY= La tua PUBLIC_KEY di Braintree
     BRAINTREE_PRIVATE_KEY= La tua PRIVATE_KEY di Braintree
+```
 
 <!-- 11. Esegui questo comando per le dipendenze di Chart.Js:
     \`\`\`bash
@@ -97,14 +104,14 @@ Segui questi passaggi per configurare l'ambiente di sviluppo localmente:
 ## Lancia Migration e Seeder
 
 1. Esegui questo comando per le Migration e Seeder insieme per creare le tabelle e popolare il DataBase:
-    \`\`\`bash
+```bash
    php artisan migrate:fresh --seed
-   \`\`\`
+```
 
 ## Avvia il Server
 
 1. Esegui i seguenti comandi da terminale:
-    \`\`\`bash
+```bash
    php artisan serve
    npm run dev
-   \`\`\`
+```
