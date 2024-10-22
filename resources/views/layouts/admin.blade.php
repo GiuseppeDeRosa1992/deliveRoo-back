@@ -2,189 +2,186 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- CSRF Token -->
-	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-	<!-- Fontawesome 6 cdn -->
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
-		integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=='
-		crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <!-- Fontawesome 6 cdn -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
+        integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=='
+        crossorigin='anonymous' referrerpolicy='no-referrer' />
 
-	<!-- Fonts -->
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-	<!-- bootastrap js -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- bootastrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Usando Vite -->
-	@vite(['resources/js/app.js'])
-	@yield('style')
+    <!-- Usando Vite -->
+    @vite(['resources/js/app.js'])
+    @yield('style')
 </head>
 
 <body>
 
-	<div id="app">
-		<div id="loader">
-			<div class="d-flex justify-content-center align-items-center vh-100">
-				<img src="{{ asset('img/logo-completo.png') }}" alt="" class="loader">
-			</div>
-		</div>
-		<div id="content" class="container-fluid vh-100" style="display: none">
-			<div class="row">
-				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-light sidebar">
-					<div class="position-sticky pt-3">
-						<ul class="nav flex-column">
+    <div id="app">
+        <div id="loader">
+            <div class="d-flex justify-content-center align-items-center vh-100">
+                <img src="{{ asset('img/logo-completo.png') }}" alt="" class="loader">
+            </div>
+        </div>
+        <div id="content" class="container-fluid vh-100" style="display: none">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block navbar-light sidebar">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
 
-							<li class="nav-item mt-2">
-								<a
-									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.dashboard') }}">
-									<i
-										class="fa-solid fa-house fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
-									<span>Dashboard</span>
-								</a>
-							</li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_salmon' : '' }}"
+                                    href="{{ route('admin.dashboard') }}">
+                                    <i
+                                        class="fa-solid fa-house fa-lg fa-fw {{ Route::currentRouteName() == 'admin.dashboard' ? 'my_orange' : '' }}"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
 
-							<li class="nav-item mt-2">
-								<a
-									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.orders.index' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.orders.index') }}">
-									<i
-										class="fa-solid fa-clipboard fa-lg fa-fw {{ Route::currentRouteName() == 'admin.orders.index' ? 'my_orange' : '' }}"></i>
-									<span>Orders</span>
-								</a>
-							</li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.orders.index' ? 'my_salmon' : '' }}"
+                                    href="{{ route('admin.orders.index') }}">
+                                    <i
+                                        class="fa-solid fa-clipboard fa-lg fa-fw {{ Route::currentRouteName() == 'admin.orders.index' ? 'my_orange' : '' }}"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
 
-							<li class="nav-item mt-2">
-								<a
-									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' || Route::currentRouteName() == 'admin.products.edit' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.products.index') }}">
-									<i
-										class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.edit' || Route::currentRouteName() == 'admin.products.create' ? 'my_orange' : '' }}"></i>
-									<span>Menus</span>
-								</a>
-							</li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' || Route::currentRouteName() == 'admin.products.edit' ? 'my_salmon' : '' }}"
+                                    href="{{ route('admin.products.index') }}">
+                                    <i
+                                        class="fa-solid fa-utensils fa-lg fa-fw {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.edit' || Route::currentRouteName() == 'admin.products.create' ? 'my_orange' : '' }}"></i>
+                                    <span>Menus</span>
+                                </a>
+                            </li>
 
-							<li class="nav-item mt-2">
-								<a
-									class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.analytics.index' ? 'my_salmon' : '' }}"
-									href="{{ route('admin.analytics.index') }}">
-									<i
-										class="fa-solid fa-chart-line fa-lg fa-fw {{ Route::currentRouteName() == 'admin.analytics.index' ? 'my_orange' : '' }}"></i>
-									<span>Analysis</span>
-								</a>
-							</li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link my_textdark rounded-pill {{ Route::currentRouteName() == 'admin.analytics.index' ? 'my_salmon' : '' }}"
+                                    href="{{ route('admin.analytics.index') }}">
+                                    <i
+                                        class="fa-solid fa-chart-line fa-lg fa-fw {{ Route::currentRouteName() == 'admin.analytics.index' ? 'my_orange' : '' }}"></i>
+                                    <span>Analysis</span>
+                                </a>
+                            </li>
 
-							<li class="nav-item mt-2">
-								<a class="nav-link my_textdark rounded-pill" href="{{ route('login') }}"
-									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-									<i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i> <span>{{ __('Logout') }}</span>
-								</a>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-									@csrf
-								</form>
-							</li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link my_textdark rounded-pill" href="{{ route('login') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
+                                    <span>{{ __('Logout') }}</span>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
 
-						</ul>
+                        </ul>
 
-					</div>
-				</nav>
+                    </div>
+                </nav>
 
-				<main class="col-md-9 ms-sm-auto col-lg-10 my_bg_grey ">
-					@yield('content')
-				</main>
-			</div>
-		</div>
+                <main class="col-md-9 ms-sm-auto col-lg-10 my_bg_grey ">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
 
-	</div>
+    </div>
 
-	<script>
-		window.addEventListener('load', function() {
-			setTimeout(() => {
-				document.getElementById('content').style.display = 'block';
-				document.getElementById('loader').style.display = 'none';
-			}, 1500);
-		})
-	</script>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('content').style.display = 'block';
+                document.getElementById('loader').style.display = 'none';
+            }, 1500);
+        })
+    </script>
 </body>
 
 </html>
 
 <style scoped>
-	.my_salmon {
-		background-color: #facdad;
-	}
+    .my_salmon {
+        background-color: #facdad;
+    }
 
-	.my_orange {
-		color: #FF9900;
-	}
+    .my_orange {
+        color: #FF9900;
+    }
 
-	a:hover {
-		color: #FF9900 !important;
+    a:hover {
+        color: #FF9900 !important;
 
-	}
+    }
 
 
-	.my_textdark {
-		color: black
-	}
+    .my_textdark {
+        color: black
+    }
 
-	.my_bg_grey {
-		background-color: #f2f3f7;
-	}
+    .my_bg_grey {
+        background-color: #f2f3f7;
+    }
 
-	/* ANIMAZIONE LOADER */
-	.loader {
-		animation: loader 1.8s ease infinite;
-		height: 6rem;
-	}
+    /* ANIMAZIONE LOADER */
+    .loader {
+        animation: loader 1.8s ease infinite;
+        height: 6rem;
+    }
 
-	@keyframes loader {
-		30% {
-			transform: scale(1.2);
-		}
+    @keyframes loader {
+        30% {
+            transform: scale(1.2);
+        }
 
-		40%,
-		60% {
-			transform: rotate(-20deg) scale(1.2);
-		}
+        40%,
+        60% {
+            transform: rotate(-20deg) scale(1.2);
+        }
 
-		50% {
-			transform: rotate(20deg) scale(1.2);
-		}
+        50% {
+            transform: rotate(20deg) scale(1.2);
+        }
 
-		70% {
-			transform: rotate(0deg) scale(1.2);
-		}
+        70% {
+            transform: rotate(0deg) scale(1.2);
+        }
 
-		100% {
-			transform: scale(1);
-		}
-	}
+        100% {
+            transform: scale(1);
+        }
+    }
 
-	@media all and (max-height: 730px) {
-		.nav-item span {
-			display: none;
-		}
+    @media all and (max-width: 730px) {
+        .nav-item span {
+            display: none;
+        }
 
-		.nav-item a {
-			padding: 0.7em 0.3rem;
-		}
+        .nav-item a {
+            padding: 0.7em 0.3rem;
+        }
 
-		#sidebarMenu ul {
-			flex-direction: row !important;
-			justify-content: space-between;
-		}
+        #sidebarMenu ul {
+            flex-direction: row !important;
+            justify-content: space-between;
+        }
 
-		.position-sticky {
-			padding-top: 0;
-			padding-bottom: 0.5rem;
-		}
-	}
+        .position-sticky {
+            padding-top: 0;
+            padding-bottom: 0.5rem;
+        }
+    }
 </style>
